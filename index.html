@@ -7,7 +7,7 @@
   <body>
   <script src="https://unpkg.com/vue@next/dist/vue.js"></script>
   <div id="app">
-    <p>{{ message }}</p>
+    <p>{{ message | capitalize}}</p>
     <input v-model="message" type="text">
     <button v-on:click="reverseMessage">Click Me</button>
   </div>
@@ -33,6 +33,13 @@
       methods: {
         reverseMessage: function(){
           this.message = this.message.split('').reverse().join('');
+        }
+      },
+      filters: {
+        capitalize: function (value) {
+          if (!value) return ''
+          value = value.toString()
+          return value.charAt(0).toUpperCase() + value.slice(1)
         }
       }
     })
