@@ -8,23 +8,53 @@
   <script src="https://unpkg.com/vue@next/dist/vue.js"></script>
   <div id="app">
     <p>{{ message }}</p>
+    <input v-model="message" type="text">
+    <button v-on:click="reverseMessage">Click Me</button>
   </div>
   <div id="app-2">
     <span v-bind:title="message">
       Hover your mouse over me for a few seconds to see my dynamically bound title!
     </span>
   </div>
+  <div id="app-3">
+    <ul>
+      <li v-for="item in items">{{item.text}}</li>
+    </ul>
+  </div>
   <script>
     var app1 = new Vue({
       el: '#app',
       data: {
         message: 'Hello Vue!'
+      },
+      methods: {
+        reverseMessage: function(){
+          this.message = this.message.split('').reverse().join('');
+        }
       }
     })
     var app2 = new Vue({
       el: '#app-2',
       data: {
         message: 'now you see'
+      }
+    })
+    var app3 = new Vue({
+      el: '#app-3',
+      data: {
+        items: [{
+          text:'apple',
+          price:3.5
+        },{
+          text:'pear',
+          price:3
+        },{
+          text:'orange',
+          price:2.1
+        },{
+          text:'grape',
+          price:3.3
+        }]
       }
     })
   </script>
